@@ -1,32 +1,19 @@
 
 package transporteturisticogestion;
 
-public abstract class Vehiculo {
+public abstract class Vehiculo implements Comparable<Vehiculo> {
     private String patente;
     private String marca;
     private int capacidadPasajeros;
     private int anioFabricacion;
 
     public Vehiculo(String patente, String marca, int capacidadPasajeros, int anioFabricacion) {
-        if (patente == null || patente.isBlank()){
-            throw new IllegalArgumentException("La patente no puede estar vacia");
-        }
-        this.patente = patente;
-        
-        if (capacidadPasajeros <= 0){
-            throw new IllegalArgumentException("");
-        }
-        this.capacidadPasajeros = capacidadPasajeros;
-        
-        this.marca = marca;
-        
-        if (anioFabricacion < 1990){
-            throw new IllegalArgumentException("");
-        }
-        this.anioFabricacion = anioFabricacion;
+        setPatente(patente);
+        setCapacidadPasajeros(capacidadPasajeros);
+        setAnioFabricacion(anioFabricacion);
+        setMarca(marca);
     }
 
-    
     public String getPatente() {
         return patente;
     }
@@ -44,23 +31,53 @@ public abstract class Vehiculo {
     }
 
     public void setPatente(String patente) {
-        if (patente == null || patente.isBlank()){
-            throw new IllegalArgumentException("La patente no puede estar vacia");
+       if (patente == null) {
+           throw new IllegalArgumentException("La patente no puede ser null");
+        }
+
+        patente = patente.trim().toUpperCase();
+
+        if (patente.isEmpty()) {
+            throw new IllegalArgumentException("La patente no puede estar vacía");
+        }
+
+        if (patente.length() != 6 && patente.length() != 7) {
+            throw new IllegalArgumentException("La patente debe tener 6 o 7 caracteres");
         }
        
         this.patente = patente;
     }
 
     public void setMarca(String marca) {
+        if (marca == null || marca.isBlank()) {
+            throw new IllegalArgumentException("La marca no puede estar vacía");
+        }
         this.marca = marca;
     }
 
     public void setCapacidadPasajeros(int capacidadPasajeros) {
+        if (capacidadPasajeros <= 0){
+            throw new IllegalArgumentException("La capacidad de pasajeros debe ser mayor a cero");
+        }
         this.capacidadPasajeros = capacidadPasajeros;
     }
 
     public void setAnioFabricacion(int anioFabricacion) {
+        if (anioFabricacion < 1990 || anioFabricacion > java.time.Year.now().getValue()){
+            throw new IllegalArgumentException("El anio de fabricacion no es valido.");
+        }
         this.anioFabricacion = anioFabricacion;
+    }
+    
+    
+    public abstract void realizarServicio();
+    
+    @Override
+    public int compareTo(Vehiculo nuevoVehiculo){ //punto 6
+        return Integer.compare(
+                nuevoVehiculo.anioFabricacion,
+                this.anioFabricacion
+        );
     }
     
 }
