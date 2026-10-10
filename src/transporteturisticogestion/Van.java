@@ -1,13 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package transporteturisticogestion;
 
-/**
- *
- * @author rodri
- */
-public class Van {
+public class Van extends Vehiculo {
+    private boolean aireAcondicionado;
+
+    public Van(String patente, String marca, int capacidadPasajeros, int anioFabricacion, boolean aireAcondicionado) {
+        super(patente, marca, capacidadPasajeros, anioFabricacion);
+        this.aireAcondicionado = aireAcondicionado;
+    }
+
+    public boolean isAireAcondicionado() {
+        return aireAcondicionado;
+    }
+
+    public void setAireAcondicionado(boolean aireAcondicionado) {
+        this.aireAcondicionado = aireAcondicionado;
+    }
+
+    @Override
+    public void realizarServicio(){
+        System.out.println("Van realizando servicio");
+    }
     
 }

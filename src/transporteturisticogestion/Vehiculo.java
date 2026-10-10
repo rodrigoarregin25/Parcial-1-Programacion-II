@@ -50,7 +50,7 @@ public abstract class Vehiculo implements Comparable<Vehiculo> {
 
     public void setMarca(String marca) {
         if (marca == null || marca.isBlank()) {
-            throw new IllegalArgumentException("La marca no puede estar vacía");
+            throw new IllegalArgumentException("La marca no puede estar vacia");
         }
         this.marca = marca;
     }
