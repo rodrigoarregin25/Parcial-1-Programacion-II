@@ -42,7 +42,7 @@ public class TransporteTuristicoGestion {
             System.out.println("2. Mostrar todos los vehiculos");
             System.out.println("3. Realizar servicios turisticos");
             System.out.println("4. Buscar vehiculo por patente");
-            System.out.println("5. Filtrar por capacidad");
+            System.out.println("5. Buscar vehiculo por capacidad de pasajeros a mayor a un valor ingresado");
             System.out.println("6. Ordenar por año descendente");
             System.out.println("7. Ordenar por capacidad descendente");
             System.out.println("8. Salir");
@@ -388,7 +388,41 @@ public class TransporteTuristicoGestion {
                         break;
 
                     case 5:
-                        System.out.println("Filtrar por capacidad");
+                        int capacidadBase;
+                        
+                        while (true){
+                            try{
+                                System.out.print("Ingrese la capacidad de pasajeros minima: ");
+                                capacidadBase = Integer.parseInt(scanner.nextLine());
+                                
+                                if (capacidadBase < 0){
+                                    System.out.println("ERROR. La capacidad no puede ser negativa.");
+                                    continue;
+                                }
+                                
+                                break;                                
+                            
+                            } catch (NumberFormatException e){
+                                System.out.println("ERROR. Debe ingresar un numero entero.");
+                            }
+                        }
+                        
+                        boolean capacidadEncontrada = false;
+                        
+                        for (Vehiculo vehiculo : listaVehiculos){
+                            if (vehiculo.getCapacidadPasajeros() > capacidadBase){
+                                System.out.println(" ");
+                                System.out.println("Vehiculo:");
+                                vehiculo.mostrarInformacion();
+                                System.out.println("---------------------------------");
+                                capacidadEncontrada = true;
+                            }
+                        }
+                        
+                        if (!capacidadEncontrada){
+                            System.out.println("No hay vehiculos con capacidad mayor a " + capacidadBase + " pasajeros");
+                        }
+                        
                         break;
 
                     case 6:
