@@ -64,7 +64,7 @@ public abstract class Vehiculo implements Comparable<Vehiculo> {
 
     public final void setAnioFabricacion(int anioFabricacion) {
         if (anioFabricacion < 1990 || anioFabricacion > java.time.Year.now().getValue()){
-            throw new IllegalArgumentException("El anio de fabricacion no es valido.");
+            throw new IllegalArgumentException("El año de fabricacion no es valido.");
         }
         this.anioFabricacion = anioFabricacion;
     }

@@ -3,6 +3,7 @@ package transporteturisticogestion;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Collections;
 
 
 public class TransporteTuristicoGestion {
@@ -58,11 +59,16 @@ public class TransporteTuristicoGestion {
                         System.out.println("2. Van");
                         System.out.println("3. Lancha");
                         
+                        
                         int tipoVehiculo;
                         while(true){
                             try{
-                                System.out.print("Ingrese tipo de vehiculo. Si no recuerda los tipos, ingrese 0: ");
+                                System.out.print("Ingrese tipo de vehiculo. Si no recuerda los tipos, ingrese 0 o 9 para volver al menu): ");
                                 tipoVehiculo = Integer.parseInt(scanner.nextLine());
+                                
+                                if (tipoVehiculo == 9){
+                                    break;
+                                }
                                 
                                 if (tipoVehiculo == 0){
                                     System.out.println("1. Colectivo");
@@ -81,8 +87,13 @@ public class TransporteTuristicoGestion {
                                 
                             } catch(NumberFormatException e){
                                 System.out.println("ERROR. Debe ingresar un numero entero.");
-                            }
-                                        
+                            }          
+                        }
+                        
+                        if (tipoVehiculo == 9) {
+                            System.out.println(" ");
+                            System.out.println("Volviendo al menu principal...");
+                            break;
                         }
                         
                         //while patente
@@ -353,8 +364,13 @@ public class TransporteTuristicoGestion {
                         String patenteBuscada;
                         
                         while(true){
-                            System.out.print("Ingrese la patente que desea buscar: ");
+                            System.out.print("Ingrese la patente que desea buscar (0 para volver): ");
                             patenteBuscada = scanner.nextLine().trim().toUpperCase();
+                            
+                            
+                            if (patenteBuscada.equals("0")){
+                                break;
+                            }
                             
                             if (patenteBuscada.isBlank()) {
                                 System.out.println("ERROR. La patente no puede estar vacia.");
@@ -380,6 +396,7 @@ public class TransporteTuristicoGestion {
 
                             if (!patenteEncontrada){
                                 System.out.println("La patente ingresada no coincide con un vehiculo registrado.");
+                                continue;
                             }
                         
                             break;
@@ -426,11 +443,28 @@ public class TransporteTuristicoGestion {
                         break;
 
                     case 6:
-                        System.out.println("Ordenar por año");
+                        Collections.sort(listaVehiculos);
+                        
+                        System.out.println("=== VEHICULOS ORDENADOS POR AÑO DESCENDENTE ===");
+                        
+                        for (Vehiculo vehiculo : listaVehiculos){
+                            System.out.println(" ");
+                            vehiculo.mostrarInformacion();
+                            System.out.println("---------------------------------");
+                        }
                         break;
 
                     case 7:
-                        System.out.println("Ordenar por capacidad");
+                        Collections.sort(listaVehiculos, new VehiculoCapacidadComparador());
+                        
+                        System.out.println("=== VEHICULOS ORDENADOS POR CAPACIDAD DESCENDENTE ===");
+                        
+                        for (Vehiculo vehiculo : listaVehiculos){
+                            System.out.println(" ");
+                            vehiculo.mostrarInformacion();
+                            System.out.println("---------------------------------");
+                        }
+                        
                         break;
 
                     case 8:

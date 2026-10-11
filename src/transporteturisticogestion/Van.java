@@ -31,7 +31,6 @@ public class Van extends Vehiculo {
     public void mostrarInformacion() {
         super.mostrarInformacion();
         System.out.println("Tipo: Van");
-        System.out.println("Tiene Aire: " + aireAcondicionado);
-}
-    
+        System.out.println("Tiene Aire: " + (aireAcondicionado ? "Si" : "No"));
+}  
 }
