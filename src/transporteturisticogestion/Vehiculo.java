@@ -75,7 +75,7 @@ public abstract class Vehiculo implements Comparable<Vehiculo> {
     public void mostrarInformacion(){
          System.out.println("Patente: " + patente);
         System.out.println("Marca: " + marca);
-        System.out.println("Capacidad: " + capacidadPasajeros);
+        System.out.println("Capacidad pasajeros: " + capacidadPasajeros + " personas");
         System.out.println("Año: " + anioFabricacion);
     }
     

@@ -350,7 +350,41 @@ public class TransporteTuristicoGestion {
                         break;
 
                     case 4:
-                        System.out.println("Buscar por patente");
+                        String patenteBuscada;
+                        
+                        while(true){
+                            System.out.print("Ingrese la patente que desea buscar: ");
+                            patenteBuscada = scanner.nextLine().trim().toUpperCase();
+                            
+                            if (patenteBuscada.isBlank()) {
+                                System.out.println("ERROR. La patente no puede estar vacia.");
+                                continue;
+                            }
+
+                            if (patenteBuscada.length() != 6 && patenteBuscada.length() != 7) {
+                                System.out.println("ERROR. La patente debe tener 6 o 7 caracteres.");
+                                continue;
+                            }
+     
+                            boolean patenteEncontrada = false;
+
+                            for (Vehiculo vehiculo : listaVehiculos){
+                                if (vehiculo.getPatente().equals(patenteBuscada)){
+                                    System.out.println(" ");
+                                    System.out.println("Patente encontrada: ");
+                                    vehiculo.mostrarInformacion();
+                                    patenteEncontrada = true;
+                                    break;
+                                }
+                            }                      
+
+                            if (!patenteEncontrada){
+                                System.out.println("La patente ingresada no coincide con un vehiculo registrado.");
+                            }
+                        
+                            break;
+                        }
+                        
                         break;
 
                     case 5:
