@@ -56,7 +56,7 @@ Documentación JavaDoc.
 
 ## Estructura del proyecto:
 
-<img width="461" height="248" alt="Estructura_readme" src="https://github.com/user-attachments/assets/977f803c-0160-4a54-9a83-4f31ad68d65a" />
+![Estructura - Transporte Turístico](docs/Estructura_readme.png)
 
 
 
