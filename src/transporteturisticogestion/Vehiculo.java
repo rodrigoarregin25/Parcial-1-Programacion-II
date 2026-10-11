@@ -30,7 +30,7 @@ public abstract class Vehiculo implements Comparable<Vehiculo> {
         return anioFabricacion;
     }
 
-    public void setPatente(String patente) {
+    public final void setPatente(String patente) {
        if (patente == null) {
            throw new IllegalArgumentException("La patente no puede ser null");
         }
@@ -48,21 +48,21 @@ public abstract class Vehiculo implements Comparable<Vehiculo> {
         this.patente = patente;
     }
 
-    public void setMarca(String marca) {
+    public final void setMarca(String marca) {
         if (marca == null || marca.isBlank()) {
             throw new IllegalArgumentException("La marca no puede estar vacia");
         }
         this.marca = marca;
     }
 
-    public void setCapacidadPasajeros(int capacidadPasajeros) {
+    public final void setCapacidadPasajeros(int capacidadPasajeros) {
         if (capacidadPasajeros <= 0){
             throw new IllegalArgumentException("La capacidad de pasajeros debe ser mayor a cero");
         }
         this.capacidadPasajeros = capacidadPasajeros;
     }
 
-    public void setAnioFabricacion(int anioFabricacion) {
+    public final void setAnioFabricacion(int anioFabricacion) {
         if (anioFabricacion < 1990 || anioFabricacion > java.time.Year.now().getValue()){
             throw new IllegalArgumentException("El anio de fabricacion no es valido.");
         }
