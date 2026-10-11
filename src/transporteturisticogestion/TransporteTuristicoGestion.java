@@ -4,8 +4,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Collections;
 
+/**
+ * Sistema de gestion de transporte turistico
+ * Permite registrar, consultar, buscar y ordenar vehiculos mediante un menu de opciones. A su vez, permite realizar servicios turisticos.
+ * 
+ * Se utiliza un ArrayList para guardar los vehiculos.
+ */
 public class TransporteTuristicoGestion {
 
+    /**
+     * Evita la creacion de instancias de la clase principal.
+     */
+    private TransporteTuristicoGestion() {
+    }
+    
+    /**
+     * Inicio del programa.
+     * 
+     * Se inicializa una lista de vehiculos a modo de prueba para que se cuente con datos.
+     * @param args argumentos de la linea de comandos
+     */
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -93,6 +111,14 @@ public class TransporteTuristicoGestion {
 
     }
 
+    /**
+     * Permite registrar un nuevo vehiculo del tipo colectivo, vans o lanchas.
+     * Se validan los datos ingresados y se evitan patentes duplicadas.
+     * 
+     * @param scanner lector de datos ingresados por consola
+     * @param listaVehiculos lista de los vehiculos registrado
+     */
+    
     private static void agregarVehiculo(
             Scanner scanner,
             ArrayList<Vehiculo> listaVehiculos) {
@@ -137,7 +163,7 @@ public class TransporteTuristicoGestion {
             return;
         }
 
-        //while patente
+        //Bucle while para validar y registrar la patente del vehiculo. 
         String patente;
         boolean patenteExiste;
 
@@ -156,6 +182,7 @@ public class TransporteTuristicoGestion {
 
             patenteExiste = false;
 
+            //Se valida que la patente no este previamente registada en la lista
             for (Vehiculo vehiculo : listaVehiculos) {
                 if (vehiculo.getPatente().equals(patente.trim().toUpperCase())) {
                     patenteExiste = true;
@@ -170,9 +197,8 @@ public class TransporteTuristicoGestion {
 
             break;
         }
-        //-------------------------------
 
-        //while marca
+        //Bucle while para validar y registrar la marca del vehiculo
         String marca;
 
         while (true) {
@@ -185,8 +211,7 @@ public class TransporteTuristicoGestion {
             break;
         }
 
-        //-------------------------------
-        //while cantidad pasajeros
+        //Bucle while para validar y registrar la cantidad de pasajeros del vehiculo
         int capacidadPasajeros;
 
         while (true) {
@@ -204,9 +229,8 @@ public class TransporteTuristicoGestion {
                 System.out.println("ERROR. Debe ingresar un numero entero.");
             }
         }
-        //-----------------------------
-
-        //while anio
+        
+        //Bucle while para validar y registrar el año de fabricacion del vehiculo
         int anioFabricacion;
 
         while (true) {
@@ -231,9 +255,8 @@ public class TransporteTuristicoGestion {
                 System.out.println("ERROR. Debe ingresar un numero entero.");
             }
         }
-        //-------------------------------
-
-        //while pisos
+        
+       //Bucle while para validar y registrar la cantidad de pisos del colectivo
         if (tipoVehiculo == 1) {
 
             int cantidadPisos;
@@ -255,7 +278,6 @@ public class TransporteTuristicoGestion {
                 }
             }
 
-            //-----------------------
             Colectivo colectivo = new Colectivo(
                     patente,
                     marca,
@@ -267,8 +289,12 @@ public class TransporteTuristicoGestion {
             listaVehiculos.add(colectivo);
             System.out.println("");
             System.out.println("Colectivo agregado correctamente.");
+            
         } else if (tipoVehiculo == 2) {
+            
             boolean aireAcondicionado;
+            
+            //Bucle while para validar y registrar si la van cuenta con aire acondicionado
             while (true) {
                 try {
                     System.out.println("La van cuenta con aire acondicionado? 1: SI - 2: NO");
@@ -298,8 +324,12 @@ public class TransporteTuristicoGestion {
 
             listaVehiculos.add(van);
             System.out.println("Van agregada correctamente");
+            
         } else if (tipoVehiculo == 3) {
+            
             String tipoMotor;
+            
+            //Bucle while para validar y registrar el tipo de motor de la lancha.
             while (true) {
                 System.out.println("Ingrese el tipo de motor de la lancha: ");
                 tipoMotor = scanner.nextLine().trim().toUpperCase();
@@ -327,6 +357,10 @@ public class TransporteTuristicoGestion {
 
     }
 
+    /**
+     * Permite mostrar la informacion de todos los vehiculos registrados en una lista.
+     * @param listaVehiculos lista de vehiculos registrados
+     */
     private static void mostrarVehiculos(ArrayList<Vehiculo> listaVehiculos) {
 
         if (listaVehiculos.isEmpty()) {
@@ -340,6 +374,11 @@ public class TransporteTuristicoGestion {
 
     }
     
+    /**
+     * Permite seleccionar un tipo de excursion para realizar un servicio y ejecuita el servicio del primer vehiculo del tipo seleccionado.
+     * @param scanner lector de datos ingresados por consola
+     * @param listaVehiculos lista de los vehiculos registrado
+     */
     private static void realizarServicio(
             Scanner scanner,
             ArrayList<Vehiculo> listaVehiculos) {
@@ -394,10 +433,16 @@ public class TransporteTuristicoGestion {
 
         if (!servicioRealizado) {
             System.out.println("No hay vehiculos disponibles para este servicio.");
-        };
-
+        }
     }
 
+    /**
+     * Busca un vehiculo registrado en una lista mediente el atributo de su patente.
+     * Se permite realizar nuevos intentos si la patente solicitada no existe o no es una entrada valida.
+     * 
+     * @param scanner lector de datos ingresados por consola
+     * @param listaVehiculos lista de los vehiculos registrado
+     */
     private static void buscarPorPatente(Scanner scanner,
             ArrayList<Vehiculo> listaVehiculos) {
         String patenteBuscada;
@@ -441,6 +486,11 @@ public class TransporteTuristicoGestion {
         }
     }
 
+    /**
+     * Muestra los vehiculos los cuales su capacidad de pasajeros supera el valor ingresado por un usuario en consola.
+     * @param scanner lector de datos ingresados por consola
+     * @param listaVehiculos lista de los vehiculos registrado
+     */
     private static void buscarPorCapacidad(Scanner scanner,
             ArrayList<Vehiculo> listaVehiculos) {
         int capacidadBase;
@@ -479,6 +529,10 @@ public class TransporteTuristicoGestion {
         }
     }
 
+    /**
+     * Ordena y muestra los vehiculos por año de fabricacion de forma descendente.
+     * @param listaVehiculos lista de los vehiculos registrado
+     */
     private static void ordenarPorAnio(ArrayList<Vehiculo> listaVehiculos) {
         Collections.sort(listaVehiculos);
 
@@ -491,6 +545,10 @@ public class TransporteTuristicoGestion {
         }
     }
     
+    /**
+     * Ordena y muestra los vehiclos por capacidad de pasajeros de forma descendente.
+     * @param listaVehiculos lista de los vehiculos registrado
+     */
     private static void ordenarPorCapacidad(ArrayList<Vehiculo> listaVehiculos) {
         Collections.sort(listaVehiculos, new VehiculoCapacidadComparador());
 
