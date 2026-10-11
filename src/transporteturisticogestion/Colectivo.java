@@ -25,6 +25,7 @@ public class Colectivo extends Vehiculo{
 
     /**
      * Obtiene la cantidad de pisos del colectivo.
+     * 
      * @return la cantidad de pisos del colectivo
      */
     public int getCantidadPisos() {

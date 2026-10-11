@@ -25,6 +25,7 @@ public class Van extends Vehiculo {
 
     /**
      * Indica si la van cuenta con aire acondicionado.
+     * 
      * @return true si tiene aire acondicionado, false si no tiene
      */
     public boolean isAireAcondicionado() {
@@ -33,6 +34,7 @@ public class Van extends Vehiculo {
 
     /**
      * Establece el valor del atributo.
+     * 
      * @param aireAcondicionado nuevo valor que se desea asignar
      */
     public void setAireAcondicionado(boolean aireAcondicionado) {

@@ -32,6 +32,7 @@ public abstract class Vehiculo implements Comparable<Vehiculo> {
 
     /**
      * Obtiene la patente del vehiculo.
+     * 
      * @return patente del vehiculo
      */
     public String getPatente() {
@@ -40,6 +41,7 @@ public abstract class Vehiculo implements Comparable<Vehiculo> {
 
     /**
      * Obtiene la marca del vehiculo.
+     * 
      * @return la marca del vehiculo
      */
     public String getMarca() {
@@ -48,6 +50,7 @@ public abstract class Vehiculo implements Comparable<Vehiculo> {
 
     /**
      * Obtiene la capacidad de pasajeros del vehiculo.
+     * 
      * @return la capacidad maxima de pasajeros permitida
      */
     public int getCapacidadPasajeros() {
@@ -56,6 +59,7 @@ public abstract class Vehiculo implements Comparable<Vehiculo> {
 
     /**
      * Obtiene el año de fabricacion del vehiculo.
+     * 
      * @return el año de fabricacion del vehiculo
      */
     public int getAnioFabricacion() {

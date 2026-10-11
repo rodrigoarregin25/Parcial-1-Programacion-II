@@ -25,6 +25,7 @@ public class Lancha extends Vehiculo{
 
     /**
      * Obtiene el tipo de motor de la lancha.
+     * 
      * @return el tipo de motor de la lancha
      */
     public String getTipoMotor() {
