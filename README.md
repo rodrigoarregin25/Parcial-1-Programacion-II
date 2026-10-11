@@ -64,8 +64,14 @@ Documentación JavaDoc.
 
 El proyecto incluye un diagrama de clases UML donde se representan las relaciones de herencia, los atributos, los métodos principales y las implementaciones de las interfaces Comparable y Comparator.
 
-<img width="900" height="510" alt="UML_Parcial" src="https://github.com/user-attachments/assets/4dad6376-07fb-4a95-94bb-a96a26a545f2" />
+![Diagrama UML - Transporte Turístico](docs/UML_Parcial.png)
 
+[Descargar diagrama UML editable](docs/UML_Parcial.uxf)
+
+## Documentacion JavaDOC
+
+La documentación de las clases y métodos está disponible en la carpeta `docs`.
+[Descargar documentación JavaDoc](docs/JavaDoc.zip)
 
 ## Recursos utilizados:
 
