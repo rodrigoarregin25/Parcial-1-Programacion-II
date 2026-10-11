@@ -284,7 +284,14 @@ public class TransporteTuristicoGestion {
                         break;
 
                     case 2:
-                        System.out.println("Mostrar vehiculos");
+                        if(listaVehiculos.isEmpty()){
+                            System.out.println("No hay vehiculos registrados aun.");
+                        } else {
+                            for (Vehiculo vehiculo : listaVehiculos){
+                                System.out.println("---------------");
+                                vehiculo.mostrarInformacion();
+                            }
+                        }
                         break;
 
                     case 3:

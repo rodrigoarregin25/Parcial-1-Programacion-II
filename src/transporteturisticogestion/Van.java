@@ -22,4 +22,11 @@ public class Van extends Vehiculo {
         System.out.println("Van realizando servicio");
     }
     
+    @Override
+    public void mostrarInformacion() {
+        super.mostrarInformacion();
+        System.out.println("Tipo: Van");
+        System.out.println("Tiene Aire: " + aireAcondicionado);
+}
+    
 }

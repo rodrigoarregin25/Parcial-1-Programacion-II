@@ -72,6 +72,13 @@ public abstract class Vehiculo implements Comparable<Vehiculo> {
     
     public abstract void realizarServicio();
     
+    public void mostrarInformacion(){
+         System.out.println("Patente: " + patente);
+        System.out.println("Marca: " + marca);
+        System.out.println("Capacidad: " + capacidadPasajeros);
+        System.out.println("Año: " + anioFabricacion);
+    }
+    
     @Override
     public int compareTo(Vehiculo nuevoVehiculo){ //punto 6
         return Integer.compare(

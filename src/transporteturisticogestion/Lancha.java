@@ -32,5 +32,12 @@ public class Lancha extends Vehiculo{
     @Override
     public void realizarServicio(){
         System.out.println("Lancha realizando servicio");
-    }  
+    }
+    
+    @Override
+    public void mostrarInformacion() {
+        super.mostrarInformacion();
+        System.out.println("Tipo: Lancha");
+        System.out.println("Tipo de motor: " + tipoMotor);
+}
 }

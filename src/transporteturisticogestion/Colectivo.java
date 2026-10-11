@@ -26,5 +26,12 @@ public class Colectivo extends Vehiculo{
         System.out.println("Colectivo realizando servicio");
     }
     
+    @Override
+    public void mostrarInformacion() {
+        super.mostrarInformacion();
+        System.out.println("Tipo: Colectivo");
+        System.out.println("Cantidad de pisos: " + cantidadPisos);
+}
+    
     
 }
