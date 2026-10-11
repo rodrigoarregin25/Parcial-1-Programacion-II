@@ -19,6 +19,11 @@ public class Van extends Vehiculo {
 
     @Override
     public void realizarServicio(){
+        System.out.println(" ");
+        System.out.println("=== EXCURSION EN VAN ===");
+        System.out.println("Traslado a Puerto Pañuelo");
+        System.out.println("Traslado adicional al puerto para excursiones lacustres");
+        System.out.println("Duracion: 40 minutos");
         System.out.println("Van realizando servicio");
     }
     

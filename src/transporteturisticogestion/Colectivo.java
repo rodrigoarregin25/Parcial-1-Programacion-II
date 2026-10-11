@@ -23,6 +23,11 @@ public class Colectivo extends Vehiculo{
     
     @Override
     public void realizarServicio(){
+        System.out.println(" ");
+        System.out.println("=== EXCURSION EN COLECTIVO ===");
+        System.out.println("Recorrido turistico por Circuito Chico");
+        System.out.println("Visita a puntos panoramicos");
+        System.out.println("Duracion: 4 horas");
         System.out.println("Colectivo realizando servicio");
     }
     

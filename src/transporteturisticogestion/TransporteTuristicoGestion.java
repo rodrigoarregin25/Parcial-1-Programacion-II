@@ -295,7 +295,58 @@ public class TransporteTuristicoGestion {
                         break;
 
                     case 3:
-                        System.out.println("Realizar servicios");
+                        System.out.println("=== SERVICIOS TURISTICOS ===");
+                        System.out.println("1. Excursion en Colectivo");
+                        System.out.println("2. Excursion en Van");
+                        System.out.println("3. Excursion en Lancha");
+                        System.out.println("0. Volver");
+                        
+                        int tipoServicio;
+                        
+                        while (true){
+                            try{
+                                System.out.print("Ingrese la excursion. 0 para volver: ");
+                                tipoServicio = Integer.parseInt(scanner.nextLine());
+                                
+                                if (tipoServicio < 0 || tipoServicio > 3){
+                                    System.out.println("ERROR. Servicio invalido.");
+                                    continue;
+                                }
+                                
+                                break;
+                            } catch (NumberFormatException e){
+                                System.out.println("ERROR. Debe ingresar un numero entero.");
+                            }    
+                        }
+                        
+                        if (tipoServicio == 0){
+                            break;
+                        }
+                        
+                        boolean servicioRealizado = false;
+                        
+                        for (Vehiculo vehiculo : listaVehiculos){  
+                            
+                            if (tipoServicio == 1 && vehiculo instanceof Colectivo){
+                                vehiculo.realizarServicio();
+                                servicioRealizado = true;
+                                break;
+                                
+                            } else if (tipoServicio == 2 && vehiculo instanceof Van){
+                                vehiculo.realizarServicio();
+                                servicioRealizado = true;
+                                break;
+                            
+                            } else if (tipoServicio == 3 && vehiculo instanceof Lancha){
+                                vehiculo.realizarServicio();
+                                servicioRealizado = true;
+                                break;
+                            }
+                        }
+                        
+                        if (!servicioRealizado){
+                            System.out.println("No hay vehiculos disponibles para este servicio.");
+                        }
                         break;
 
                     case 4:
