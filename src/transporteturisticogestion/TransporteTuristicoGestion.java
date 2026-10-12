@@ -171,7 +171,7 @@ public class TransporteTuristicoGestion {
 
         while (true) {
             System.out.print("Ingrese patente: ");
-            patente = scanner.nextLine();
+            patente = scanner.nextLine().trim().toUpperCase().replace(" ", "");
             if (patente.isBlank()) {
                 System.out.println("ERROR. La patente no puede estar vacia.");
                 continue;
@@ -473,7 +473,7 @@ public class TransporteTuristicoGestion {
 
         while (true) {
             System.out.print("Ingrese la patente que desea buscar (0 para volver): ");
-            patenteBuscada = scanner.nextLine().trim().toUpperCase();
+            patenteBuscada = scanner.nextLine().trim().toUpperCase().replace(" ", "");
 
             if (patenteBuscada.equals("0")) {
                 break;

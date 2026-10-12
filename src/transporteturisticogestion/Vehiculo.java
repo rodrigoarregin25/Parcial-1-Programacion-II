@@ -79,7 +79,7 @@ public abstract class Vehiculo implements Comparable<Vehiculo> {
            throw new IllegalArgumentException("La patente no puede ser null");
         }
 
-        patente = patente.trim().toUpperCase();
+        patente = patente.trim().toUpperCase().replace(" ", "");
 
         if (patente.isEmpty()) {
             throw new IllegalArgumentException("La patente no puede estar vacía");
