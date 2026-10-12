@@ -5,9 +5,10 @@ import java.util.Scanner;
 import java.util.Collections;
 
 /**
- * Sistema de gestion de transporte turistico
- * Permite registrar, consultar, buscar y ordenar vehiculos mediante un menu de opciones. A su vez, permite realizar servicios turisticos.
- * 
+ * Sistema de gestion de transporte turistico Permite registrar, consultar,
+ * buscar y ordenar vehiculos mediante un menu de opciones. A su vez, permite
+ * realizar servicios turisticos.
+ *
  * Se utiliza un ArrayList para guardar los vehiculos.
  */
 public class TransporteTuristicoGestion {
@@ -17,21 +18,21 @@ public class TransporteTuristicoGestion {
      */
     private TransporteTuristicoGestion() {
     }
-    
+
     /**
-     * Inicio del programa.
-     * Se inicializa una lista de vehiculos a modo de prueba para que se cuente con datos.
-     * 
+     * Inicio del programa. Se inicializa una lista de vehiculos a modo de
+     * prueba para que se cuente con datos.
+     *
      * @param args argumentos de la linea de comandos
      */
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
-/*
+
         listaVehiculos.add(new Colectivo(
                 "AA123BZ", "Mercedes Benz", 45, 2020, 2));
-
+        /*
         listaVehiculos.add(new Colectivo(
                 "AE456CD", "Scania", 50, 2022, 1));
 
@@ -46,7 +47,7 @@ public class TransporteTuristicoGestion {
 
         listaVehiculos.add(new Lancha(
                 "LAN072", "Mercury", 10, 2022, "ELECTRICO"));
-*/
+         */
         int opcion = 0;
 
         do {
@@ -62,9 +63,7 @@ public class TransporteTuristicoGestion {
 
             try {
                 System.out.println(" ");
-                System.out.print("Ingrese una opcion: ");
-                System.out.print(" ");
-                opcion = Integer.parseInt(scanner.nextLine());
+                opcion = validarEntero(scanner, "Ingrese una opcion: ");
 
                 switch (opcion) {
                     case 1:
@@ -114,49 +113,65 @@ public class TransporteTuristicoGestion {
     }
 
     /**
-     * Permite registrar un nuevo vehiculo del tipo colectivo, vans o lanchas.
-     * Se validan los datos ingresados y se evitan patentes duplicadas.
-     * 
-     * @param scanner lector de datos ingresados por consola
-     * @param listaVehiculos lista de los vehiculos registrado
+     * Solicita un numero entero y permite reintentar cuando el usuario ingresa
+     * un valor no numerico
+     *
+     * @param scanner lector de datos por consola
+     * @param mensaje mensaje que se muestra al usuario
+     * @return numero entero ingresado
      */
-    
-    private static void agregarVehiculo(
-            Scanner scanner,
-            ArrayList<Vehiculo> listaVehiculos) {
-        System.out.println("Vehiculo a ingresar: ");
-        System.out.println("1. Colectivo");
-        System.out.println("2. Van");
-        System.out.println("3. Lancha");
-
-        int tipoVehiculo;
+    private static int validarEntero(Scanner scanner, String mensaje) {
         while (true) {
             try {
-                System.out.print("Ingrese tipo de vehiculo. Si no los recuerda ingrese 0, o ingrese 9 para volver al menu): ");
-                tipoVehiculo = Integer.parseInt(scanner.nextLine());
-
-                if (tipoVehiculo == 9) {
-                    break;
-                }
-
-                if (tipoVehiculo == 0) {
-                    System.out.println("1. Colectivo");
-                    System.out.println("2. Van");
-                    System.out.println("3. Lancha");
-                    continue;
-
-                }
-
-                if (tipoVehiculo < 1 || tipoVehiculo > 3) {
-                    System.out.println("ERROR. Debe ingresar un tipo de vehiculo correcto.");
-                    continue;
-                }
-
-                break;
+                System.out.print(mensaje);
+                return Integer.parseInt(scanner.nextLine());
 
             } catch (NumberFormatException e) {
                 System.out.println("ERROR. Debe ingresar un numero entero.");
             }
+        }
+    }
+
+    /**
+     * Permite registrar un nuevo vehiculo del tipo colectivo, vans o lanchas.
+     * Se validan los datos ingresados y se evitan patentes duplicadas.
+     *
+     * @param scanner lector de datos ingresados por consola
+     * @param listaVehiculos lista de los vehiculos registrados
+     */
+    private static void agregarVehiculo(
+            Scanner scanner,
+            ArrayList<Vehiculo> listaVehiculos) {
+        System.out.println(" ");
+        System.out.println("Vehiculo a ingresar: ");
+        System.out.println("1. Colectivo");
+        System.out.println("2. Van");
+        System.out.println("3. Lancha");
+        System.out.println(" ");
+
+        int tipoVehiculo;
+        while (true) {
+            tipoVehiculo = validarEntero(scanner, "Ingrese tipo de vehiculo. Si no los recuerda ingrese 0, o ingrese 9 para volver al menu): ");
+            System.out.println(" ");
+
+            if (tipoVehiculo == 9) {
+                break;
+            }
+
+            if (tipoVehiculo == 0) {
+                System.out.println("1. Colectivo");
+                System.out.println("2. Van");
+                System.out.println("3. Lancha");
+                continue;
+
+            }
+
+            if (tipoVehiculo < 1 || tipoVehiculo > 3) {
+                System.out.println("ERROR. Debe ingresar un tipo de vehiculo correcto.");
+                continue;
+            }
+
+            break;
         }
 
         if (tipoVehiculo == 9) {
@@ -172,12 +187,13 @@ public class TransporteTuristicoGestion {
         while (true) {
             System.out.print("Ingrese patente: ");
             patente = scanner.nextLine().trim().toUpperCase().replace(" ", "");
+
             if (patente.isBlank()) {
                 System.out.println("ERROR. La patente no puede estar vacia.");
                 continue;
             }
 
-            if (patente.trim().length() != 6 && patente.trim().length() != 7) {
+            if (patente.length() != 6 && patente.length() != 7) {
                 System.out.println("ERROR. La patente debe tener 6 o 7 caracteres.");
                 continue;
             }
@@ -186,7 +202,7 @@ public class TransporteTuristicoGestion {
 
             //Se valida que la patente no este previamente registada en la lista
             for (Vehiculo vehiculo : listaVehiculos) {
-                if (vehiculo.getPatente().equals(patente.trim().toUpperCase())) {
+                if (vehiculo.getPatente().equals(patente)) {
                     patenteExiste = true;
                     break;
                 }
@@ -217,67 +233,51 @@ public class TransporteTuristicoGestion {
         int capacidadPasajeros;
 
         while (true) {
-            try {
-                System.out.print("Ingrese capacidad de pasajeros: ");
-                capacidadPasajeros = Integer.parseInt(scanner.nextLine());
+            capacidadPasajeros = validarEntero(scanner, "Ingrese capacidad de pasajeros: ");
 
-                if (capacidadPasajeros <= 0) {
-                    System.out.println("ERROR. La capacidad de pasajeros debe ser mayor a cero. ");
-                    continue;
-                }
-
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("ERROR. Debe ingresar un numero entero.");
+            if (capacidadPasajeros <= 0) {
+                System.out.println("ERROR. La capacidad de pasajeros debe ser mayor a cero. ");
+                continue;
             }
+
+            break;
         }
-        
+
         //Bucle while para validar y registrar el año de fabricacion del vehiculo
         int anioFabricacion;
 
         while (true) {
+            anioFabricacion = validarEntero(scanner, "Ingrese año de fabricacion: ");
 
-            try {
-                System.out.print("Ingrese año de fabricacion: ");
-                anioFabricacion = Integer.parseInt(scanner.nextLine());
-
-                if (anioFabricacion < 1990) {
-                    System.out.println("ERROR. El año de fabricacion no puede ser menor a 1990. ");
-                    continue;
-                }
-
-                if (anioFabricacion > java.time.Year.now().getValue()) {
-                    System.out.println("ERROR. El año de fabricacion no puede mayor al actual. ");
-                    continue;
-                }
-
-                break;
-
-            } catch (NumberFormatException e) {
-                System.out.println("ERROR. Debe ingresar un numero entero.");
+            if (anioFabricacion < 1990) {
+                System.out.println("ERROR. El año de fabricacion no puede ser menor a 1990. ");
+                continue;
             }
+
+            if (anioFabricacion > java.time.Year.now().getValue()) {
+                System.out.println("ERROR. El año de fabricacion no puede mayor al actual. ");
+                continue;
+            }
+
+            break;
+
         }
-        
-       //Bucle while para validar y registrar la cantidad de pisos del colectivo
+
+        //Bucle while para validar y registrar la cantidad de pisos del colectivo
         if (tipoVehiculo == 1) {
 
             int cantidadPisos;
 
             while (true) {
-                try {
-                    System.out.print("Ingrese cantidad de pisos: ");
-                    cantidadPisos = Integer.parseInt(scanner.nextLine());
+                cantidadPisos = validarEntero(scanner, "Ingrese cantidad de pisos: ");
 
-                    if (cantidadPisos != 1 && cantidadPisos != 2) {
-                        System.out.println("ERROR. La cantidad de pisos debe ser 1 o 2.");
-                        continue;
-                    }
-
-                    break;
-
-                } catch (NumberFormatException e) {
-                    System.out.println("ERROR. Debe ingresar un numero entero.");
+                if (cantidadPisos != 1 && cantidadPisos != 2) {
+                    System.out.println("ERROR. La cantidad de pisos debe ser 1 o 2.");
+                    continue;
                 }
+
+                break;
+
             }
 
             Colectivo colectivo = new Colectivo(
@@ -291,30 +291,25 @@ public class TransporteTuristicoGestion {
             listaVehiculos.add(colectivo);
             System.out.println("");
             System.out.println("Colectivo agregado correctamente.");
-            
+
         } else if (tipoVehiculo == 2) {
-            
+
             boolean aireAcondicionado;
-            
+
             //Bucle while para validar y registrar si la van cuenta con aire acondicionado
             while (true) {
-                try {
-                    System.out.print("La van cuenta con aire acondicionado? 1: SI - 2: NO - Respuesta: ");
-                    int tieneAire = Integer.parseInt(scanner.nextLine());
+                int tieneAire = validarEntero(scanner, "La van cuenta con aire acondicionado? 1: SI - 2: NO - Respuesta: ");
 
-                    if (tieneAire == 1) {
-                        aireAcondicionado = true;
-                    } else if (tieneAire == 2) {
-                        aireAcondicionado = false;
-                    } else {
-                        System.out.println("ERROR. Debe ingresar 1 o 2 para definir el aire acondicionado");
-                        continue;
-                    }
-                    break;
-
-                } catch (NumberFormatException e) {
-                    System.out.println("ERROR. Debe ingresar un numero entero.");
+                if (tieneAire == 1) {
+                    aireAcondicionado = true;
+                } else if (tieneAire == 2) {
+                    aireAcondicionado = false;
+                } else {
+                    System.out.println("ERROR. Debe ingresar 1 o 2 para definir el aire acondicionado");
+                    continue;
                 }
+                break;
+
             }
             Van van = new Van(
                     patente,
@@ -325,15 +320,16 @@ public class TransporteTuristicoGestion {
             );
 
             listaVehiculos.add(van);
-            System.out.println("Van agregada correctamente");
-            
+            System.out.println(" ");
+            System.out.println("Van agregada correctamente.");
+
         } else if (tipoVehiculo == 3) {
-            
+
             String tipoMotor;
-            
+
             //Bucle while para validar y registrar el tipo de motor de la lancha.
             while (true) {
-                System.out.print("Ingrese el tipo de motor de la lancha (Nafta, Diesel o Electrico");
+                System.out.print("Ingrese el tipo de motor de la lancha (Nafta, Diesel o Electrico): ");
                 tipoMotor = scanner.nextLine().trim().toUpperCase();
 
                 if (!tipoMotor.equals("NAFTA")
@@ -354,14 +350,16 @@ public class TransporteTuristicoGestion {
             );
 
             listaVehiculos.add(lancha);
+            System.out.println(" ");
             System.out.println("Lancha agregada correctamente.");
         }
 
     }
 
     /**
-     * Permite mostrar la informacion de todos los vehiculos registrados en una lista.
-     * 
+     * Permite mostrar la informacion de todos los vehiculos registrados en una
+     * lista.
+     *
      * @param listaVehiculos lista de vehiculos registrados
      */
     private static void mostrarVehiculos(ArrayList<Vehiculo> listaVehiculos) {
@@ -371,30 +369,31 @@ public class TransporteTuristicoGestion {
             System.out.println("No hay vehiculos registrados aun.");
         } else {
             for (Vehiculo vehiculo : listaVehiculos) {
+                System.out.println(" ");
                 System.out.println("---------------");
                 vehiculo.mostrarInformacion();
             }
         }
 
     }
-    
+
     /**
-     * Permite seleccionar un tipo de excursion para realizar un servicio y ejecuita el servicio del primer vehiculo del tipo seleccionado.
+     * Permite seleccionar un tipo de excursion para realizar un servicio y ejecuita el servicio del primer vehiculo del tipo seleccionado. 
      * Valida que la lista de vehiculos no este vacia.
-     * 
+     *
      * @param scanner lector de datos ingresados por consola
-     * @param listaVehiculos lista de los vehiculos registrado
+     * @param listaVehiculos lista de los vehiculos registrados
      */
     private static void realizarServicio(
             Scanner scanner,
             ArrayList<Vehiculo> listaVehiculos) {
-        
-        if(listaVehiculos.isEmpty()){
+
+        if (listaVehiculos.isEmpty()) {
             System.out.println(" ");
             System.out.println("No hay vehiculos registrados aun.");
-            return; 
+            return;
         }
-        
+
         System.out.println(" ");
         System.out.println("=== SERVICIOS TURISTICOS ===");
         System.out.println("1. Excursion en Colectivo");
@@ -405,20 +404,15 @@ public class TransporteTuristicoGestion {
         int tipoServicio;
 
         while (true) {
-            try {
-                System.out.println("");
-                System.out.print("Ingrese la excursion. (Ingrese 0 para volver al menu): ");
-                tipoServicio = Integer.parseInt(scanner.nextLine());
+            System.out.println(" ");
+            tipoServicio = validarEntero(scanner, "Ingrese la excursion. (Ingrese 0 para volver al menu): ");
 
-                if (tipoServicio < 0 || tipoServicio > 3) {
-                    System.out.println("ERROR. Servicio invalido.");
-                    continue;
-                }
-
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("ERROR. Debe ingresar un numero entero.");
+            if (tipoServicio < 0 || tipoServicio > 3) {
+                System.out.println("ERROR. Servicio invalido.");
+                continue;
             }
+
+            break;
         }
 
         if (tipoServicio == 0) {
@@ -453,22 +447,23 @@ public class TransporteTuristicoGestion {
     }
 
     /**
-     * Busca un vehiculo registrado en una lista mediante el atributo de su patente.
-     * Valida que la lista de vehiculos no este vacia.
-     * Se permite realizar nuevos intentos si la patente solicitada no existe o no es una entrada valida.
-     * 
+     * Busca un vehiculo registrado en una lista mediante el atributo de su
+     * patente. Valida que la lista de vehiculos no este vacia. Se permite
+     * realizar nuevos intentos si la patente solicitada no existe o no es una
+     * entrada valida.
+     *
      * @param scanner lector de datos ingresados por consola
-     * @param listaVehiculos lista de los vehiculos registrado
+     * @param listaVehiculos lista de los vehiculos registrados
      */
     private static void buscarPorPatente(Scanner scanner,
             ArrayList<Vehiculo> listaVehiculos) {
-        
-        if(listaVehiculos.isEmpty()){
+
+        if (listaVehiculos.isEmpty()) {
             System.out.println(" ");
             System.out.println("No hay vehiculos registrados aun.");
-            return; 
+            return;
         }
-        
+
         String patenteBuscada;
 
         while (true) {
@@ -511,38 +506,35 @@ public class TransporteTuristicoGestion {
     }
 
     /**
-     * Muestra los vehiculos los cuales su capacidad de pasajeros supera el valor ingresado por un usuario en consola.
-     * Valida que la lista de vehiculos no este vacia.
-     * 
+     * Muestra los vehiculos los cuales su capacidad de pasajeros supera el
+     * valor ingresado por un usuario en consola. Valida que la lista de
+     * vehiculos no este vacia.
+     *
      * @param scanner lector de datos ingresados por consola
-     * @param listaVehiculos lista de los vehiculos registrado
+     * @param listaVehiculos lista de los vehiculos registrados
      */
     private static void buscarPorCapacidad(Scanner scanner,
             ArrayList<Vehiculo> listaVehiculos) {
-        
-        if(listaVehiculos.isEmpty()){
+
+        if (listaVehiculos.isEmpty()) {
             System.out.println(" ");
             System.out.println("No hay vehiculos registrados aun.");
-            return; 
+            return;
         }
-        
+
         int capacidadBase;
 
         while (true) {
-            try {
-                System.out.print("Ingrese la capacidad de pasajeros minima: ");
-                capacidadBase = Integer.parseInt(scanner.nextLine());
 
-                if (capacidadBase < 0) {
-                    System.out.println("ERROR. La capacidad no puede ser negativa.");
-                    continue;
-                }
+            capacidadBase = validarEntero(scanner, "Ingrese la capacidad de pasajeros minima: ");
 
-                break;
-
-            } catch (NumberFormatException e) {
-                System.out.println("ERROR. Debe ingresar un numero entero.");
+            if (capacidadBase < 0) {
+                System.out.println("ERROR. La capacidad no puede ser negativa.");
+                continue;
             }
+
+            break;
+
         }
 
         boolean capacidadEncontrada = false;
@@ -563,19 +555,19 @@ public class TransporteTuristicoGestion {
     }
 
     /**
-     * Ordena y muestra los vehiculos por año de fabricacion de forma descendente.
-     * Valida que la lista de vehiculos no este vacia.
-     * 
-     * @param listaVehiculos lista de los vehiculos registrado
+     * Ordena y muestra los vehiculos por año de fabricacion de forma
+     * descendente. Valida que la lista de vehiculos no este vacia.
+     *
+     * @param listaVehiculos lista de los vehiculos registrados
      */
     private static void ordenarPorAnio(ArrayList<Vehiculo> listaVehiculos) {
-        
-        if (listaVehiculos.isEmpty()){
+
+        if (listaVehiculos.isEmpty()) {
             System.out.println(" ");
             System.out.println("No hay vehiculos registrados aun.");
             return;
         }
-        
+
         Collections.sort(listaVehiculos);
 
         System.out.println("=== VEHICULOS ORDENADOS POR AÑO DESCENDENTE ===");
@@ -586,16 +578,16 @@ public class TransporteTuristicoGestion {
             System.out.println("---------------------------------");
         }
     }
-    
+
     /**
-     * Ordena y muestra los vehiculos por capacidad de pasajeros de forma descendente.
-     * Valida que la lista de vehiculos no este vacia.
-     * 
+     * Ordena y muestra los vehiculos por capacidad de pasajeros de forma
+     * descendente. Valida que la lista de vehiculos no este vacia.
+     *
      * @param listaVehiculos lista de los vehiculos registrados
      */
     private static void ordenarPorCapacidad(ArrayList<Vehiculo> listaVehiculos) {
-        
-        if (listaVehiculos.isEmpty()){
+
+        if (listaVehiculos.isEmpty()) {
             System.out.println(" ");
             System.out.println("No hay vehiculos registrados aun.");
             return;
