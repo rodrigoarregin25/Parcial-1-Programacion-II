@@ -534,7 +534,6 @@ public class TransporteTuristicoGestion {
             }
 
             break;
-
         }
 
         boolean capacidadEncontrada = false;
