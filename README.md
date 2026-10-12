@@ -56,8 +56,31 @@ Documentación JavaDoc.
 
 ## Estructura del proyecto:
 
-![Estructura - Transporte Turístico](docs/Estructura_readme.png)
-
+```text
+TransporteTuristicoGestion/
+├── docs/
+│   ├── JavaDoc.zip
+│   ├── README.md
+│   ├── UML_Parcial.png
+│   └── UML_Parcial.uxf
+├── nbproject/
+│   ├── build-impl.xml
+│   ├── genfiles.properties
+│   ├── project.properties
+│   └── project.xml
+├── src/
+│   └── transporteturisticogestion/
+│       ├── Colectivo.java
+│       ├── Lancha.java
+│       ├── TransporteTuristicoGestion.java
+│       ├── Van.java
+│       ├── Vehiculo.java
+│       └── VehiculoCapacidadComparador.java
+├── .gitignore
+├── README.md
+├── build.xml
+└── manifest.mf
+```
 
 
 ## Diagrama UML:
