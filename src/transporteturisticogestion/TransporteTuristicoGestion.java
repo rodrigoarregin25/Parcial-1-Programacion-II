@@ -30,24 +30,6 @@ public class TransporteTuristicoGestion {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
 
-        listaVehiculos.add(new Colectivo(
-                "AA123BZ", "Mercedes Benz", 45, 2020, 2));
-        /*
-        listaVehiculos.add(new Colectivo(
-                "AE456CD", "Scania", 50, 2022, 1));
-
-        listaVehiculos.add(new Van(
-                "AC780EF", "Renault", 15, 2021, true));
-
-        listaVehiculos.add(new Van(
-                "AD321GH", "Toyota", 12, 2019, false));
-
-        listaVehiculos.add(new Lancha(
-                "LAN021", "Yamaha", 8, 2023, "NAFTA"));
-
-        listaVehiculos.add(new Lancha(
-                "LAN072", "Mercury", 10, 2022, "ELECTRICO"));
-         */
         int opcion = 0;
 
         do {
@@ -103,9 +85,9 @@ public class TransporteTuristicoGestion {
                 }
 
             } catch (NumberFormatException e) {
-                System.out.println("Error: debe ingresar un numero.");
+                System.out.println("ERROR: debe ingresar un numero.");
             } catch (IllegalArgumentException e) {
-                System.out.println("Error: " + e.getMessage());
+                System.out.println("ERROR: " + e.getMessage());
             }
 
         } while (opcion != 8);
@@ -209,7 +191,7 @@ public class TransporteTuristicoGestion {
             }
 
             if (patenteExiste) {
-                System.out.println("Error. Entrada duplicada. Debe ingresar una patente diferente");
+                System.out.println("ERROR. Entrada duplicada. Debe ingresar una patente diferente");
                 continue;
             }
 
