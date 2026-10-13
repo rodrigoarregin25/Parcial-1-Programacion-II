@@ -65,7 +65,8 @@ public class Lancha extends Vehiculo{
         System.out.println("Recorrido por Isla Victoria");
         System.out.println("Navegacion por el lago");
         System.out.println("Duracion: 6 horas");
-        System.out.println("Lancha realizando servicio");
+        System.out.println(" ");
+        System.out.println("Lancha realizando servicio...");
     }
     
     /**

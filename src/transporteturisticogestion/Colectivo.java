@@ -56,7 +56,8 @@ public class Colectivo extends Vehiculo{
         System.out.println("Recorrido turistico por Circuito Chico");
         System.out.println("Visita a puntos panoramicos");
         System.out.println("Duracion: 4 horas");
-        System.out.println("Colectivo realizando servicio");
+        System.out.println(" ");
+        System.out.println("Colectivo realizando servicio...");
     }
     
     /**

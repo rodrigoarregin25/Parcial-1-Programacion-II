@@ -20,8 +20,7 @@ public class TransporteTuristicoGestion {
     }
 
     /**
-     * Inicio del programa. Se inicializa una lista de vehiculos a modo de
-     * prueba para que se cuente con datos.
+     * Inicio del programa.
      *
      * @param args argumentos de la linea de comandos
      */
@@ -33,7 +32,8 @@ public class TransporteTuristicoGestion {
         int opcion = 0;
 
         do {
-            System.out.println("\n=== TRANSPORTE TURISTICO ===");
+            System.out.println("=== TRANSPORTE TURISTICO ===");
+            System.out.println(" ");
             System.out.println("1. Agregar vehiculo");
             System.out.println("2. Mostrar todos los vehiculos");
             System.out.println("3. Realizar servicios turisticos");
@@ -159,6 +159,7 @@ public class TransporteTuristicoGestion {
         if (tipoVehiculo == 9) {
             System.out.println(" ");
             System.out.println("Volviendo al menu principal...");
+            System.out.println(" ");
             return;
         }
 
